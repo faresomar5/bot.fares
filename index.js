@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 20119;
 
 // توجيه أي زائر لرابط Railway مباشرة إلى واجهة موقعك الأساسية في Katabump
 app.get(['/', '/dashboard'], (req, res) => {
-  res.redirect('https://control.katabump.com/dashboard'); // ضع الرابط الفعلي لواجهتك هنا
+  res.redirect('http://51.75.118.151:20119/dashboard'); // ضع الرابط الفعلي لواجهتك هنا
 });
 
 // مسار لفحص حالة السيرفر
