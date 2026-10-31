@@ -26,13 +26,13 @@ app.get('/', (req, res) => {
         <div class="card">
           <h3>السيرفر الأول (Katabump)</h3>
           <p>الحالة: <span style="color: #4ade80;">Online</span></p>
-          <a href="http://51.75.118.151:20119/dashboard" target="_blank">فتح لوحة السيرفر الأول</a>
+          <a href="http://51.75.118.151:20119" target="_blank">فتح لوحة السيرفر الأول</a>
         </div>
 
         <div class="card">
           <h3>السيرفر الثاني</h3>
           <p>العنوان: 147.135.213.72:20277</p>
-          <a href="http://147.135.213.72:20277/dashboard" target="_blank">فتح لوحة السيرفر الثاني</a>
+          <a href="http://147.135.213.72:20277" target="_blank">فتح لوحة السيرفر الثاني</a>
         </div>
       </body>
     </html>
@@ -41,11 +41,11 @@ app.get('/', (req, res) => {
 
 // 2. مسارات مخصصة لتوجيه أو جلب بيانات السيرفرين من نفس الرابط الموحد
 app.get('/server1', (req, res) => {
-  res.redirect('http://51.75.118.151:20119/dashboard');
+  res.redirect('http://51.75.118.151:20119');
 });
 
 app.get('/server2', (req, res) => {
-  res.redirect('http://147.135.213.72:20277/dashboard');
+  res.redirect('http://147.135.213.72:20277');
 });
 
 // حماية السيرفر من الانهيار
