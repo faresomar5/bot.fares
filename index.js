@@ -13,12 +13,17 @@ const PORT = process.env.PORT || 20119;
 const sessionPath = path.join(process.cwd(), 'sessions', serverName);
 console.log(`📂 مسار الجلسة الخاص بهذا السيرفر (${serverName}): ${sessionPath}`);
 
-// 3. ربط مجلد dashboard الفعلي لعرض ملفات الواجهة الحقيقية (مثل index.html و servers.html)
-app.use('/dashboard', express.static(path.join(process.cwd(), 'dashboard')));
+// 3. قراءة الملفات الثابتة مباشرة من المجلد الحالي (لأن الملفات موجودة فيه)
+app.use(express.static(process.cwd()));
 
-// 4. توجيه الصفحة الرئيسية تلقائياً إلى لوحة التحكم
-app.get('/', (req, res) => {
-  res.redirect('/dashboard');
+// 4. توجيه الرابط الرئيسي أو /dashboard مباشرة إلى ملف index.html
+app.get(['/', '/dashboard'], (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'index.html'));
+});
+
+// توجيه صفحة السيرفرات
+app.get('/servers', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'servers.html'));
 });
 
 // حماية السيرفر من الانهيار المفاجئ عند حدوث أي خطأ غير معالج
@@ -33,5 +38,5 @@ process.on('unhandledRejection', (err) => {
 // 5. تشغيل السيرفر على المنفذ المخصص
 const server = http.createServer(app);
 server.listen(PORT, '0.0.0.0', () => {
-  console.log(`🚀 السيرفر (${serverName}) يعمل الآن على المنفذ: ${PORT} ويعرض لوحة التحكم بنجاح`);
+  console.log(`🚀 السيرفر (${serverName}) يعمل الآن على المنفذ: ${PORT} ويفتح لوحة التحكم بنجاح`);
 });
