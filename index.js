@@ -2,7 +2,7 @@ import express from 'express';
 import http from 'http';
 
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 20119;
 
 // توجيه أي زائر لرابط Railway مباشرة إلى واجهة موقعك الأساسية في Katabump
 app.get(['/', '/dashboard'], (req, res) => {
